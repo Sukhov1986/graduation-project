@@ -1,19 +1,23 @@
 {% extends 'main/base.html' %}
+{% load static %}
 
-{% block title %} Новости{% endblock %}
+{% block title %}Новости{% endblock %}
 
 {% block content %}
-    <h2>Новости</h2>
-<div class="news">
-    {% for article in articles %}
-    <div class="element">
-        <img src="{{ article.image.url }}">
+    <div class="img">
+        <img src="{% static 'news/news.jpeg' %}" alt="News Image">
     </div>
-    <div class="title">
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.content }}</p>
-    </div>
-    {% endfor %}
-</div>
 
+    <h2>Новости</h2>
+    <div class="news">
+        {% for article in articles %}
+            <div class="element">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            </div>
+            <div class="title">
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}
