@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<div class="article-container">
+    <h1>{{ st.title }}</h1>
+    <img src="{{ st.image.url }}" alt="Изображение к статье" class="article-image">
+    <h2>{{ st.published_date|date:"d.m.Y" }}</h2>
+    <div class="article-content">
+        {{ st.content|safe }}
+    </div>
+</div>
+{% endblock %}

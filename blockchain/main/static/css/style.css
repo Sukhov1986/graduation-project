@@ -1,19 +1,18 @@
-/* Reset styles */
-html, body {
-    margin: 0;
-    padding: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap');
 
 body {
-    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
+    font-family: 'Roboto', sans-serif;
     line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
+    box-sizing: border-box;
 }
 
 header {
@@ -24,12 +23,14 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 24px;
+    font-size: 30px;
+    text-align: center;
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
+    text-align: center;
 }
 
 nav ul li {
@@ -40,6 +41,7 @@ nav ul li {
 nav ul li a {
     color: #fff;
     text-decoration: none;
+    font-weight: 500;
 }
 
 nav ul li a:hover {
@@ -61,57 +63,68 @@ footer p {
     margin: 0;
 }
 
+# для news
 
-
-
-
-
-
-
-
-.img {
-    text-align: center;
+.news-header {
+    position: relative;
     margin-bottom: 20px;
 }
 
-.img img {
-    max-width: 100%;
+.news-header img {
+    width: 100%;
     height: auto;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.news-item {
+    background-color: #f9f9f9;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Стили для блока новостей */
-.news {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-/* Стили для каждого элемента новости */
-.element {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-.element img {
-    max-width: 100%;
+.news-image img {
+    width: 100%;
     height: auto;
-    display: block;
-}
-
-/* Стили для заголовка и текста новости */
-.title {
-    padding: 15px;
-}
-
-.title h2 {
-    font-size: 1.5em;
+    max-height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
     margin-bottom: 10px;
 }
 
-.title p {
-    font-size: 1em;
+.published-date {
+    color: #999;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.article-title {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.article-content {
     line-height: 1.6;
 }
+
+@media (max-width: 768px) {
+    .news-list {
+        grid-template-columns: 1fr;
+    }
+}
+.article-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+# для article
+
+
+

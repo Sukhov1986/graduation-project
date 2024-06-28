@@ -4,20 +4,27 @@
 {% block title %}Новости{% endblock %}
 
 {% block content %}
-    <div class="img">
-        <img src="{% static 'news/news.jpeg' %}" alt="News Image">
-    </div>
-
+<div class="news-header">
+    <img src="{% static 'news/news.jpg' %}" alt="News Image" class="header-img">
     <h2>Новости</h2>
-    <div class="news">
-        {% for article in articles %}
-            <div class="element">
-                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+</div>
+
+<div class="news-list">
+    {% for article in articles %}
+    <a href="{% url 'article' article.id %}" class="article-link" target="_blank">
+        <div class="news-item">
+            <div class="news-image">
+                <img src="{{ article.image.url }}" alt="{{ article.title }}" class="article-img">
             </div>
-            <div class="title">
-                <h2>{{ article.title }}</h2>
-                <p>{{ article.content }}</p>
+            <div class="news-details">
+                <p class="published-date">{{ article.published_date|date:"d.m.Y" }}</p>
+                <h3 class="article-title">{{ article.title }}</h3>
+               <p class="article-content">{{ article.content|striptags|truncatechars:360 }}</p>
             </div>
-        {% endfor %}
-    </div>
-{% endblock %}
+        </div>
+    </a>
+    {% endfor %}
+</div>
+
+{%endblock%}
+
