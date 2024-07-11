@@ -1,4 +1,9 @@
 {% extends 'main/base.html' %}
 {% block content %}
-<h1>Пока так</h1>
+<h1>All Users</h1>
+<ul>
+    {% for profile in profiles %}
+    <li><a href="{% url 'profile' pk=profile.pk %}">{{ profile.name }}</a></li>
+    {% endfor %}
+</ul>
 {% endblock %}
