@@ -26,9 +26,11 @@
                 <div class="card-header">
                     <h5>Social Networks</h5>
                 </div>
+                {% if profile.social_vk %}
                 <div class="card-body">
                     <p><strong>VK:</strong> <a href="{{ profile.social_vk }}">{{ profile.social_vk }}</a></p>
                 </div>
+                {% endif %}
             </div>
         </div>
     </div>
