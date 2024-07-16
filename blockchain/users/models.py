@@ -10,6 +10,8 @@ class Profile(models.Model):
     info = models.TextField(blank=True)
     image = models.ImageField(upload_to='profiles/', default='profiles/8380015.jpg')
     social_vk = models.CharField(max_length=200, blank=True)
+    social_facebook = models.CharField(max_length=200, blank=True)
+    social_twitter = models.CharField(max_length=200, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
