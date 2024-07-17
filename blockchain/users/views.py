@@ -4,6 +4,28 @@ from .models import Profile
 from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm
+# from .forms import CustomUserCreationForm
+
+
+def register_user(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.username = user.username.lower()
+            user.save()
+
+            messages.success(request, 'Учетная запись создана успешно')
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'В процессе регистрации произошла ошибка')
+    else:
+        form = UserCreationForm
+
+    context = {'form': form}
+    return render(request, 'users/register.html', context)
 
 
 def login_user(request):
@@ -18,7 +40,7 @@ def login_user(request):
             user = User.objects.get(username=username)
         except ObjectDoesNotExist:
             messages.error(request, "Такого пользователя не существует")
-            return render(request, 'users/login_register.html')
+            return render(request, 'users/login.html')
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
@@ -26,7 +48,7 @@ def login_user(request):
             return redirect('profiles')
         else:
             messages.error(request, 'Не корректные данные для входа')
-    return render(request, 'users/login_register.html')
+    return render(request, 'users/login.html')
 
 
 def logout_user(request):
