@@ -4,25 +4,25 @@ from .models import Profile
 from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
-# from .forms import CustomUserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
+from .forms import CustomUserCreationForm
 
 
 def register_user(request):
+    form = CustomUserCreationForm()
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
-
             messages.success(request, 'Учетная запись создана успешно')
             login(request, user)
             return redirect('home')
+
         else:
             messages.error(request, 'В процессе регистрации произошла ошибка')
-    else:
-        form = UserCreationForm
+            # print(form.errors)
 
     context = {'form': form}
     return render(request, 'users/register.html', context)

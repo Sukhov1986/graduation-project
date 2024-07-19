@@ -1,16 +1,17 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% block content %}
-<form method="post" action="{% url 'register' %}">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="register">
-</form>
+
 <main class="form-signup">
     <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
         <img class="custom-image" src="{% static 'images/SL-100820-36440-05.jpg' %}" alt="New User Icon">
         <h1 class="h3 mb-3 fw-normal">Регистрация нового пользователя</h1>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingFirstName" name="first_name" placeholder="Username" required>
+            <label for="floatingUsername">Имя</label>
+        </div>
 
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingUsername" name="username" placeholder="Username" required>
@@ -23,12 +24,12 @@
         </div>
 
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+            <input type="password" class="form-control" id="floatingPassword" name="password1" placeholder="Password" required>
             <label for="floatingPassword">Пароль</label>
         </div>
 
         <div class="form-floating mb-3">
-            <input type="password" class="form-control" id="floatingPasswordConfirm" name="password_confirm" placeholder="Confirm Password" required>
+            <input type="password" class="form-control" id="floatingPasswordConfirm" name="password2" placeholder="Confirm Password" required>
             <label for="floatingPasswordConfirm">Подтвердите Пароль</label>
         </div>
 
@@ -38,4 +39,6 @@
         </div>
     </form>
 </main>
+
+
 {% endblock %}
