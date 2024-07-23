@@ -2,14 +2,19 @@
 {% load static %}
 {% block content %}
 
+
+
 <div class="container mt-5">
     <div class="row d-flex flex-wrap justify-content-center">
         <div class="col-md-4 mb-3">
+            <a style="display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;" href="{% url 'edit-account' %}" class="btn btn-outline-warning btn-sm">Редактировать профиль</a>
             <div class="card border shadow">
                 <img src="{{ profile.image.url }}" class="card-img-top" alt="Profile Image">
                 <div class="card-body text-center">
                     <p class="card-text">{{ profile.info }}</p>
-                    <a href="#" class="btn btn-warning w-100 py-2">Отправить сообщение</a>
                 </div>
             </div>
         </div>
@@ -50,6 +55,5 @@
         </div>
     </div>
 </div>
-
 
 {% endblock %}

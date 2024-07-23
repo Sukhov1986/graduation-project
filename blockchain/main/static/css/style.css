@@ -11,31 +11,6 @@ body {
 
 
 /* profile */
-.card {
-    margin-bottom: 20px;
-}
-
-
-
-.card-header {
-    background-color: #343a40;
-    color: #fff;
-    padding: 10px 15px;
-    font-size: 1.2em;
-}
-
-.card-body p {
-    margin: 0 0 10px;
-}
-
-a {
-    color: #007bff;
-}
-
-a:hover {
-    color: #0056b3;
-    text-decoration: none;
-}
 
 
 
@@ -151,3 +126,43 @@ a:hover {
      border: 3px solid #fff;
      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/* all news */
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+
+
+.card-img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.stretched-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+}
+
+
+
+
+
+

@@ -1,11 +1,14 @@
 {% extends 'main/base.html' %}
 {% load static %}
+{% block title %}
+{{ title }}
+{% endblock %}
 {% block content %}
-<main class="form-signup">
+<main class="form-signup" style="padding-top: 80px; padding-bottom: 80px;">
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
         <img class="custom-image" src="{% static 'images/protection-concept-with-lock.jpg' %}" alt="New User Icon">
-        <h1 class="h3 mb-3 fw-normal">Введите ваш логин и пароль</h1>
+        <h1 class="h3 mb-3 fw-normal">Пожалуйста, войдите</h1>
 
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="floatingUsername" name="username" placeholder="Username"
@@ -22,5 +25,5 @@
         <button class="btn btn-warning w-100 py-2" type="submit">Войти</button>
     </form>
 </main>
-</main>
+
 {% endblock %}

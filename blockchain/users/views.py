@@ -5,7 +5,8 @@ from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 # from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileModelForm
+from django.contrib.auth.decorators import login_required
 
 
 def register_user(request):
@@ -24,7 +25,7 @@ def register_user(request):
             messages.error(request, 'В процессе регистрации произошла ошибка')
             # print(form.errors)
 
-    context = {'form': form}
+    context = {'form': form, 'title': "Регистрация"}
     return render(request, 'users/register.html', context)
 
 
@@ -48,7 +49,8 @@ def login_user(request):
             return redirect('profiles')
         else:
             messages.error(request, 'Не корректные данные для входа')
-    return render(request, 'users/login.html')
+    context = {'title': "Авторизация"}
+    return render(request, 'users/login.html', context)
 
 
 def logout_user(request):
@@ -66,3 +68,26 @@ def profiles(request):
 def profile(request, pk):
     pr = get_object_or_404(Profile, pk=pk)
     return render(request, 'users/profile.html', {'profile': pr})
+
+
+@login_required(login_url='login')
+def user_account(request):
+    prof = request.user.profile
+    context = {
+        'profile': prof,
+    }
+    return render(request, 'users/account.html', context)
+
+
+@login_required(login_url='login')
+def edit_account(request):
+    prof = request.user.profile
+    form = ProfileModelForm(instance=prof)
+    if request.method == 'POST':
+        form = ProfileModelForm(request.POST, request.FILES, instance=prof)
+        if form.is_valid():
+            form.save()
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'users/profile_form.html', context)
