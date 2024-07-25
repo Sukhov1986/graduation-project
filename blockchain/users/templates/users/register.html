@@ -12,14 +12,14 @@
         <h1 class="h3 mb-3 fw-normal">Регистрация пользователя</h1>
 
         {% for field in form %}
-            <div class="form-floating mb-3">
-                {{ field }}
-                <label >{{ field.label }}</label>
-                {% for error in field.errors %}
-                <p style="color: red">{{ error }}</p>
+        <div class="form-floating mb-3">
+            {{ field }}
+            <label>{{ field.label }}</label>
+            {% for error in field.errors %}
+            <p style="color: red">{{ error }}</p>
 
-                {% endfor %}
-            </div>
+            {% endfor %}
+        </div>
         {% endfor %}
 
         <button class="btn btn-warning w-100 py-2" type="submit">Зарегистрироваться</button>

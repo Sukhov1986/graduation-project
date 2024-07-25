@@ -9,7 +9,11 @@
                 <img src="{{ profile.image.url }}" class="card-img-top" alt="Profile Image">
                 <div class="card-body text-center">
                     <p class="card-text">{{ profile.info }}</p>
-                    <a href="#" class="btn btn-warning w-100 py-2">Отправить сообщение</a>
+                    <a href="{% url 'account' %}">
+                        <img src="{% static 'images/free-icon-send-mail-12050219.png' %}" alt="Назад"
+                             style="width: 70px; height: 70px;
+                                    margin-bottom: 10px">
+                    </a>
                 </div>
             </div>
         </div>
