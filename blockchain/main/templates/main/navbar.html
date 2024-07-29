@@ -12,25 +12,8 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li><a href="{% url 'news' %}" class="nav-link px-2 text-white">Новости</a></li>
                 <li><a href="{% url 'profiles' %}" class="nav-link px-2 text-white">Пользователи</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Customers</a></li>
+                <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Проекты</a></li>
                 <li><a href="#" class="nav-link px-2 text-white">Products</a></li>
-                {% if user.is_superuser %}
-                <div class="btn-group">
-                    <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                        Добавление
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'add_article' %}">Добавить статью</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Separated link</a></li>
-                    </ul>
-                </div>
-                {% endif %}
             </ul>
 
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

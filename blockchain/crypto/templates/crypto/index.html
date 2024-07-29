@@ -1,0 +1,17 @@
+
+{% extends 'main/base.html' %}
+{% block title %}Курс криптовалют{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="mb-4">Курс криптовалют в реальном времени</h1>
+    <ul class="list-group">
+        {% for symbol, price in crypto_prices.items %}
+            <li class="list-group-item">
+                <h5>{{ name|upper }}</h5>
+                <p>Цена: ${{ price }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
