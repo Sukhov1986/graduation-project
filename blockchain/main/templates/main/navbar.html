@@ -13,12 +13,25 @@
                 <li><a href="{% url 'news' %}" class="nav-link px-2 text-white">Новости</a></li>
                 <li><a href="{% url 'profiles' %}" class="nav-link px-2 text-white">Пользователи</a></li>
                 <li><a href="{% url 'index' %}" class="nav-link px-2 text-white">Проекты</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle px-2 text-white" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Криптовалюты
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="#">DeFi</a></li>
+                        <li><a class="dropdown-item" href="#">NFT</a></li>
+                        <li><a class="dropdown-item" href="#">Стейблкоин</a></li>
+                        <li><a class="dropdown-item" href="#">Токены</a></li>
+                         <li><a class="dropdown-item" href="#">Альткоины</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'index' %}" >Все категории</a></li>
+                    </ul>
+                </li>
                 <li><a href="#" class="nav-link px-2 text-white">Products</a></li>
             </ul>
-
-            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-                <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-            </form>
 
             <div class="dropdown text-end">
                 {% if request.user.is_authenticated %}

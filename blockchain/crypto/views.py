@@ -1,18 +1,14 @@
-import requests
 from django.shortcuts import render
-from .models import Crypto
-from django.conf import settings
+from .utils import prices, paginate_crypto
 
 
 def index(request):
-    cryptos = Crypto.objects.all()
-    crypto_ids = ','.join([crypto.name for crypto in cryptos])
-    api_url = f"{settings.CRYPTO_API_URL}?ids={crypto_ids}&vs_currencies=usd"
-    response = requests.get(api_url)
-    data = response.json()
-    context = {
-        'crypto_prices': {crypto.name: data.get(crypto.name, {}).get('usd', 'N/A') for crypto in cryptos}
-    }
-    return render(request, 'crypto/index.html', context)
+    cryptos = prices()
+    custom_range, cryptos = paginate_crypto(request, cryptos, 5)
 
-# Create your views here.
+    context = {
+        'custom_range': custom_range,
+        'cryptos': cryptos
+    }
+
+    return render(request, 'crypto/index.html', context)
