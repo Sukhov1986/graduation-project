@@ -13,7 +13,7 @@
 <section class="py-5 text-center container">
     <div class="row py-lg-5">
         <div class="col-lg-6 col-md-8 mx-auto">
-            <form class="d-flex justify-content-center mb-4" action="{% url 'news' %}" method="get">
+            <form id='search' class="d-flex justify-content-center mb-4" action="{% url 'news' %}" method="get">
                 <input id="search-input" class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search"
                        name="search_news" value="{{ search_news }}">
                 <button id="search-button" class="btn btn-warning" type="submit">Поиск</button>

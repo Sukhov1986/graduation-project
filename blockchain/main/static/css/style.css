@@ -6,8 +6,14 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
+.footer {
+    margin-top: auto;
+}
 
 
 /* profile */
@@ -162,6 +168,57 @@ body {
 }
 
 
+/* comments */
+.comments-container {
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.comments-container h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #333;
+}
+
+.comments-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comments-list li {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.comments-list li a {
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.comments-list li a:hover {
+    text-decoration: underline;
+}
+
+.comments-list li p {
+    margin: 5px 0 0;
+    color: #666;
+}
+
+.comments-list li:nth-child(odd) {
+    background-color: #f1f1f1;
+}
+
+.comments-list li:nth-child(even) {
+    background-color: #e9e9e9;
+}
 
 
 

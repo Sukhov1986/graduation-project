@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
 {% block title %}Новости{% endblock %}
+{% load static %}
 {% block content %}
 <div class="article-container">
     <h1 class="article-title">{{ st.title }}</h1>
@@ -8,5 +9,22 @@
     <div class="article-content">
         {{ st.content|safe }}
     </div>
+</div>
+<div class="comments-container">
+    <h3>Комментарии</h3>
+    {% if comments %}
+        <ul class="comments-list">
+            {% for comment in comments %}
+                <li>
+                     <img src="{{ comment.owner.image.url }}" alt="User Image" class="img-thumbnail me-4"
+                         style="width: 100px; height: 100px;">
+                    <a href="{% url 'profile' comment.owner.id %}">{{ comment.owner }}</a>
+                    <p>{{ comment.comment }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Комментариев пока нет.</p>
+    {% endif %}
 </div>
 {% endblock %}

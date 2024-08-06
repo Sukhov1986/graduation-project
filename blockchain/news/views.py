@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
-from .models import News
+from .models import News, Comments
 from django.shortcuts import render, redirect
 from .utils import search_content, paginate
 
@@ -19,4 +19,9 @@ def news(request):
 
 def article(request, news_id):
     st = get_object_or_404(News, pk=news_id)
-    return render(request, 'news/article.html', {'st': st})
+    comments = Comments.objects.filter(news=st)
+    context = {
+        'st': st,
+        'comments': comments
+    }
+    return render(request, 'news/article.html', context)
