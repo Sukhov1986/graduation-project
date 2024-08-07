@@ -1,5 +1,5 @@
 from django import forms
-from .models import News
+from .models import News, Comments
 
 
 class NewsForm(forms.ModelForm):
@@ -16,6 +16,12 @@ class NewsForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs.update({'class': 'form-control'})
+
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comments
+        fields = ['comment']
 
 
 

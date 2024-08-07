@@ -10,21 +10,37 @@
         {{ st.content|safe }}
     </div>
 </div>
+{% if user.is_authenticated %}
+{% if not user_has_commented %}
+<form action="{% url 'article' st.id %}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="comment">Комментарий</label>
+        <textarea class="form-control" id="comment" name="comment" rows="3"
+                  placeholder="Введите ваш комментарий"></textarea>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Отправить</button>
+    </div>
+</form>
+{% else %}
+<p>Вы уже оставили комментарий к этой новости.</p>
+{% endif %}
+{% endif %}
+
+{% if comments %}
 <div class="comments-container">
     <h3>Комментарии</h3>
-    {% if comments %}
-        <ul class="comments-list">
-            {% for comment in comments %}
-                <li>
-                     <img src="{{ comment.owner.image.url }}" alt="User Image" class="img-thumbnail me-4"
-                         style="width: 100px; height: 100px;">
-                    <a href="{% url 'profile' comment.owner.id %}">{{ comment.owner }}</a>
-                    <p>{{ comment.comment }}</p>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>Комментариев пока нет.</p>
-    {% endif %}
+    <ul class="comments-list">
+        {% for comment in comments %}
+        <li>
+            <img src="{{ comment.owner.image.url }}" alt="User Image" class="img-thumbnail me-4"
+                 style="width: 100px; height: 100px;">
+            <p><a href="{% url 'profile' comment.owner.id %}">{{ comment.owner }}</a></p>
+            <p>{{ comment.comment }}</p>
+            <p>{{ comment.created|date:"d-m-Y H:i" }}</p>
+        </li>
+        {% endfor %}
+    </ul>
 </div>
+{% endif %}
+
 {% endblock %}

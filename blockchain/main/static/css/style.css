@@ -221,5 +221,12 @@ body {
 }
 
 
-
+/* form comment */
+#comment {
+    width: 800px;
+}
+.form-group{
+    margin-top: 30px;
+    margin-left: 20px;
+}
 
