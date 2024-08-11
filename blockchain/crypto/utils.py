@@ -4,9 +4,7 @@ from .models import Crypto
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
-def prices():
-    cryptos = Crypto.objects.all()
-
+def prices(cryptos):
     crypto_ids = ','.join([crypto.name.lower() for crypto in cryptos])
 
     api_url = f"{settings.CRYPTO_API_URL}?ids={crypto_ids}&vs_currencies=usd"

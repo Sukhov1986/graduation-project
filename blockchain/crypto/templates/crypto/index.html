@@ -3,27 +3,45 @@
 {% block title %}Курс криптовалют{% endblock %}
 
 {% block content %}
-<div class="container py-5">
-    <h1 class="mb-4">Курс криптовалют в реальном времени</h1>
-    <ul class="list-group">
-        {% for crypto in cryptos %}
-        <li class="list-group-item d-flex align-items-center border rounded mb-3 shadow-sm crypto-item">
-            <img src="{{ crypto.image.url }}" alt="{{ crypto.name }}" class="img-thumbnail me-4"
-                 style="width: 100px; height: 100px;">
-            <div>
-                <h5 class="mb-1"> {{ crypto.short_name }}</h5>
-                <p class="mb-0">Цена: ${{ crypto.price }}</p>
-                Категории:
-                {% for category in crypto.categories.all %}
-                <span class="badge bg-primary">{{ category.name }}</span>
-                {% empty %}
-                <span class="badge bg-secondary">Без категории</span>
-                {% endfor %}
+<div class="container py-5" style="max-width: 1800px;">
+    <div class="row">
+        <div class="col-md-2 mt-3">
+            <div class="text-bg-dark rounded p-3">
+                <a href="{% url 'index' %}" class="nav-link text-white">
+                    <h5 class="mb-3">Все категории</h5>
+                </a>
+                <ul class="nav flex-column">
+                    {% for category in categories %}
+                    <li class="nav-item">
+                        <a href="{% url 'category' category.id %}" class="nav-link text-white">{{ category.name }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
-{% include 'main/pagination.html' with queryset=cryptos %}
-{% endblock %}
+        </div>
 
+        <div class="col-md-9">
+            <h1 class="mb-4">Курс криптовалют в реальном времени</h1>
+            <ul class="list-group">
+                {% for crypto in cryptos %}
+                <li class="list-group-item d-flex align-items-center border rounded mb-3 shadow-sm crypto-item">
+                    <img src="{{ crypto.image.url }}" alt="{{ crypto.name }}" class="img-thumbnail me-4"
+                         style="width: 100px; height: 100px;">
+                    <div>
+                        <h5 class="mb-1">{{ crypto.short_name }}</h5>
+                        <p class="mb-0">Цена: ${{ crypto.price }}</p>
+                        Категории:
+                        {% for category in crypto.categories.all %}
+                        <span class="badge text-bg-dark">{{ category.name }}</span>
+                        {% empty %}
+                        <span class="badge bg-secondary">Без категории</span>
+                        {% endfor %}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            {% include 'main/pagination.html' with queryset=cryptos %}
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -10,6 +10,7 @@
         {{ st.content|safe }}
     </div>
 </div>
+
 {% if user.is_authenticated %}
 {% if not user_has_commented %}
 <form action="{% url 'article' st.id %}" method="POST">
@@ -22,8 +23,11 @@
     </div>
 </form>
 {% else %}
-<p>Вы уже оставили комментарий к этой новости.</p>
+<p class="custom-paragraph">Вы уже оставили комментарий.</p>
 {% endif %}
+{% else %}
+<p class="custom-paragraph">Пожалуйста, <a href="{% url 'login' %}">войдите</a>, чтобы оставить комментарий.</p>
+
 {% endif %}
 
 {% if comments %}
@@ -42,5 +46,4 @@
     </ul>
 </div>
 {% endif %}
-
 {% endblock %}

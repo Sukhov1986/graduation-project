@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Message
 from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
@@ -101,3 +101,15 @@ def delete_profile(request):
         messages.success(request, "Профиль успешно удален.")
         return redirect('home')
     return render(request, 'users/delete_profile.html', {'user': user})
+
+
+@login_required(login_url='login')
+def inbox(request):
+    pr = request.user.profile
+    message_request = pr.messages.all()
+    count_message = message_request.filter(is_read=False).count()
+    context = {
+        'count_message': count_message,
+        'message_request': message_request,
+    }
+    return render(request, 'users/inbox.html', context)

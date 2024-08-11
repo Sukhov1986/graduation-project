@@ -23,25 +23,28 @@ def article(request, news_id):
     st = get_object_or_404(News, pk=news_id)
     comments = Comments.objects.filter(news=st).order_by('-created')
     form = CommentForm()
+    user_has_commented = False
 
-    user_has_commented = Comments.objects.filter(owner=request.user.profile, news=st).exists()
+    if request.user.is_authenticated:
+        user_has_commented = Comments.objects.filter(owner=request.user.profile, news=st).exists()
 
     if request.method == 'POST':
-        form = CommentForm(request.POST)
-        if form.is_valid():
-            comm = form.save(commit=False)
-            comm.owner = request.user.profile
-            comm.news = st
-            if not user_has_commented:
+        if request.user.is_authenticated:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comm = form.save(commit=False)
+                comm.owner = request.user.profile
+                comm.news = st
                 comm.save()
-                messages.success(request, 'Комментарий оставлен успешно')
-                return redirect('article', news_id=news_id)
-            else:
-                messages.error(request, 'Вы уже оставляли комментарий к этой новости')
-                return redirect('article', news_id=news_id)
+                messages.success(request, 'Ваш отзыв оставлен успешно')
+                return redirect(request.path_info)
+        else:
+            return redirect('login')
+
     context = {
         'st': st,
         'comments': comments,
-        'form': form
+        'form': form,
+        'user_has_commented': user_has_commented
     }
     return render(request, 'news/article.html', context)
