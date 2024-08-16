@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block title %}Сообщения{% endblock %}
+
+{% block content %}
+<main class="container my-5">
+    <div class="card p-4">
+        <a class="btn btn-outline-secondary mb-3" href="#">
+            <img src="images/left.png" alt="left" class="me-2"> Назад
+        </a>
+
+        <form method="POST">
+            <!-- Input:Text -->
+            <div class="mb-3">
+                <label for="formInput1" class="form-label">Text Field:</label>
+                <input type="text" class="form-control" id="formInput1" name="text" placeholder="Enter text">
+            </div>
+
+            <!-- Input:Text -->
+            <div class="mb-3">
+                <label for="formInput2" class="form-label">Text Field:</label>
+                <input type="text" class="form-control" id="formInput2" name="text" placeholder="Enter text">
+            </div>
+
+            <!-- Input:Text -->
+            <div class="mb-3">
+                <label for="formInput3" class="form-label">Text Field:</label>
+                <input type="text" class="form-control" id="formInput3" name="text" placeholder="Enter text">
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+</main>
+
+{% endblock %}

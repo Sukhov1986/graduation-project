@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
-from .models import Profile, Message
+from .models import Profile
 from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
@@ -113,3 +113,25 @@ def inbox(request):
         'message_request': message_request,
     }
     return render(request, 'users/inbox.html', context)
+
+
+def view_message(request, pk):
+    pr = request.user.profile
+    message = pr.messages.get(id=pk)
+    if message.is_read is False:
+        message.is_read = True
+        message.save()
+    context = {
+        'message': message
+    }
+    return render(request, 'users/message.html', context)
+
+
+@login_required(login_url='login')
+def create_message(request, pk):
+    recipient = Profile.objects.get(id=pk)
+    context = {
+        'recipient': recipient,
+    }
+    return render(request, 'users/message_form.html', context)
+

@@ -18,6 +18,7 @@ class Profile(models.Model):
         return self.name
 
 
+
 class Message(models.Model):
     sender = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True)
     recipient = models.ForeignKey(Profile, on_delete=models.SET_NULL, null=True, blank=True,

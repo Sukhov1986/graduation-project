@@ -38,7 +38,7 @@
         <li>
             <img src="{{ comment.owner.image.url }}" alt="User Image" class="img-thumbnail me-4"
                  style="width: 100px; height: 100px;">
-            <p><a href="{% url 'profile' comment.owner.id %}">{{ comment.owner }}</a></p>
+            <p><a href="{% url 'profile' comment.owner.id %}" class="text-decoration-none text-dark fw-bold">{{ comment.owner }} </a></p>
             <p>{{ comment.comment }}</p>
             <p>{{ comment.created|date:"d-m-Y H:i" }}</p>
         </li>
