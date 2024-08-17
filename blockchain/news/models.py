@@ -7,7 +7,12 @@ class News(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     image = models.ImageField(upload_to='news/images/', default='news/images//1659682472110977919.jpg')
+    likes = models.ManyToManyField(Profile, related_name='liked_articles', blank=True)
     published_date = models.DateTimeField(auto_now_add=True)
+
+    def total_likes(self):
+        return self.likes.count()
+
 
     def __str__(self):
         return self.title

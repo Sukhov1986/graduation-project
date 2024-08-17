@@ -10,6 +10,28 @@
         {{ st.content|safe }}
     </div>
 </div>
+<form action="{% url 'like_news' st.pk %}" method="POST">
+    {% csrf_token %}
+    {% if user.is_authenticated %}
+    {% if user.profile in st.likes.all %}
+    <button type="submit" class="btn btn-link text-danger mt-5 ms-5" style="font-size: 1.5rem;">
+        <i class="bi bi-heart-fill"></i>
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-link text-secondary mt-5 ms-5" style="font-size: 1.5rem;">
+        <i class="bi bi-heart"></i>
+    </button>
+    {% endif %}
+
+
+    {% else %}
+    <button type="submit" class="btn btn-link text-secondary mt-5 ms-5" style="font-size: 1.5rem;">
+        <i class="bi bi-heart"></i>
+    </button>
+    {% endif %}
+</form>
+<p class="mt-2 ms-5"><strong>{{ st.total_likes }}</strong> likes</p>
+
 
 {% if user.is_authenticated %}
 {% if not user_has_commented %}
@@ -38,7 +60,7 @@
         <li>
             <img src="{{ comment.owner.image.url }}" alt="User Image" class="img-thumbnail me-4"
                  style="width: 100px; height: 100px;">
-            <p><a href="{% url 'profile' comment.owner.id %}" class="text-decoration-none text-dark fw-bold">{{ comment.owner }} </a></p>
+            <p><a href="{% url 'profile' comment.owner.id %}" class="text-decoration-none text-dark fw-bold">{{ comment.owner.name }} </a></p>
             <p>{{ comment.comment }}</p>
             <p>{{ comment.created|date:"d-m-Y H:i" }}</p>
         </li>

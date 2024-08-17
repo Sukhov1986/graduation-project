@@ -5,7 +5,7 @@ from django.contrib.auth import logout, login, authenticate
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
 # from django.contrib.auth.forms import UserCreationForm
-from .forms import CustomUserCreationForm, ProfileModelForm
+from .forms import CustomUserCreationForm, ProfileModelForm, MassageForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -31,7 +31,7 @@ def register_user(request):
 
 def login_user(request):
     if request.user.is_authenticated:
-        return redirect('profiles')
+        return redirect('home')
 
     if request.method == 'POST':
         username = request.POST['username'].lower()
@@ -46,7 +46,7 @@ def login_user(request):
 
         if user is not None:
             login(request, user)
-            return redirect('profiles')
+            return redirect('home')
         else:
             messages.error(request, 'Не корректные данные для входа')
     context = {'title': "Авторизация"}
@@ -59,10 +59,7 @@ def logout_user(request):
     return redirect('login')
 
 
-def profiles(request):
-    prof = Profile.objects.all()
-    context = {'profiles': prof}
-    return render(request, 'users/index.html', context)
+
 
 
 def profile(request, pk):
@@ -130,8 +127,10 @@ def view_message(request, pk):
 @login_required(login_url='login')
 def create_message(request, pk):
     recipient = Profile.objects.get(id=pk)
+    form = MassageForm
     context = {
         'recipient': recipient,
+        'form': form
     }
     return render(request, 'users/message_form.html', context)
 

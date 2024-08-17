@@ -48,3 +48,15 @@ def article(request, news_id):
         'user_has_commented': user_has_commented
     }
     return render(request, 'news/article.html', context)
+
+@login_required(login_url='login')
+def like_news(request, pk):
+    news_item = get_object_or_404(News, pk=pk)
+    if request.user.is_authenticated:
+        profile = request.user.profile  # Предполагается, что у пользователя есть профиль
+        if news_item.likes.filter(id=profile.id).exists():
+            news_item.likes.remove(profile)
+        else:
+            news_item.likes.add(profile)
+
+    return redirect('article', news_id=pk)
