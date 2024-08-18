@@ -127,7 +127,19 @@ def view_message(request, pk):
 @login_required(login_url='login')
 def create_message(request, pk):
     recipient = Profile.objects.get(id=pk)
-    form = MassageForm
+    sender = request.user.profile
+    if request.method == 'POST':
+        form = MassageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recipient = recipient
+            message.save()
+            messages.success(request, 'Сообщение отправлено')
+            return redirect('profile', pk=recipient.id)
+    else:
+        form = MassageForm()
+
     context = {
         'recipient': recipient,
         'form': form

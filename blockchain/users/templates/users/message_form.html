@@ -4,25 +4,25 @@
 {% load static %}
 
 {% block content %}
-<main class="container my-5">
+<main class="container my-5" style="width: 800px;">
     <div>
         <div class="card-header">
             <a href="{% url 'profile' recipient.id %}">
                 <img src="{% static 'images/free-icon-backwards-4822153.png' %}" alt="Назад"
-                     style="width: 50px; height: 50px;
-                                    margin-bottom: 10px">
+                     style="width: 50px; height: 50px; margin-bottom: 10px;">
             </a>
         </div>
-           <div class="card-body">
-            <form method="POST">
+        <div class="card-body">
+           <form method="POST" action="{% url 'create_message' recipient.id %}">
                 {% csrf_token %}
-                <div class="mb-3">
-                    {{ form.as_p }}
+                <div class="form-group">
+                    <label for="id_content">Сообщение</label>
+                    {{form.content}}
+                    <button type="submit" class="btn btn-warning mt-3">Отправить</button>
                 </div>
-                <button type="submit" class="btn btn-primary">Send</button>
             </form>
         </div>
     </div>
 </main>
-
 {% endblock %}
+
