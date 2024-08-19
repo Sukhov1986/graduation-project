@@ -2,12 +2,13 @@
 
 <header class="p-3 text-bg-dark">
     <div class="me-3 text-white" style="flex-shrink: 0;">
-        Курс USD к RUB: {{ currency_rate }}
+        USDT : {{ currency_rate }} RUB
     </div>
     <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ">
             <a href="{% url 'home' %}"
-               class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+               class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+               style="position: relative; left: -120px;">
                 <img src="{% static 'images/icons8-биткоин-48.png' %}" width="50" height="50" alt="Your Logo">
             </a>
 

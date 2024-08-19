@@ -17,6 +17,10 @@ class Profile(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'профиль'
+        verbose_name_plural = 'Профили'
+
 
 
 class Message(models.Model):
@@ -32,3 +36,9 @@ class Message(models.Model):
 
     class Meta:
         ordering = ['is_read', '-created']
+        verbose_name = 'сообщение'
+        verbose_name_plural = 'Сообщения'
+
+
+
+

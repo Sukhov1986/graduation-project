@@ -17,6 +17,10 @@ class News(models.Model):
     def __str__(self):
         return self.title
 
+    class Meta:
+        verbose_name = 'новость'
+        verbose_name_plural = 'Новости'
+
 
 class Comments(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
@@ -29,3 +33,5 @@ class Comments(models.Model):
 
     class Meta:
         unique_together = [['owner', 'news']]
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'Комментарии'

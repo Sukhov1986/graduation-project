@@ -8,11 +8,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Категории'
+        verbose_name_plural = 'категория'
+
 
 class Crypto(models.Model):
     name = models.CharField(max_length=100)
-    # price = models.DecimalField(max_digits=20, decimal_places=10,
-    #                             default=Decimal('0.0'))
     short_name = models.CharField(max_length=50)
     image = models.ImageField(upload_to='crypto/images/')
     last_updated = models.DateTimeField(auto_now=True)
@@ -20,3 +22,8 @@ class Crypto(models.Model):
 
     def __str__(self):
         return self.name
+
+
+    class Meta:
+        verbose_name = 'криптовалюта'
+        verbose_name_plural = 'Криптовалюты'
