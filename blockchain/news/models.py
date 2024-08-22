@@ -4,10 +4,10 @@ from users.models import Profile
 
 
 class News(models.Model):
-    title = models.CharField(max_length=200)
-    content = models.TextField()
-    image = models.ImageField(upload_to='news/images/', default='news/images//1659682472110977919.jpg')
-    likes = models.ManyToManyField(Profile, related_name='liked_articles', blank=True)
+    title = models.CharField(max_length=200, verbose_name='заголовок')
+    content = models.TextField( verbose_name='контент')
+    image = models.ImageField(upload_to='news/images/', default='news/images//1659682472110977919.jpg', verbose_name='изображение')
+    likes = models.ManyToManyField(Profile, related_name='liked_articles', blank=True, verbose_name='лайк')
     published_date = models.DateTimeField(auto_now_add=True)
 
     def total_likes(self):
@@ -23,9 +23,9 @@ class News(models.Model):
 
 
 class Comments(models.Model):
-    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    news = models.ForeignKey(News, on_delete=models.CASCADE)
-    comment = models.TextField(blank=True)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, verbose_name='комментатор')
+    news = models.ForeignKey(News, on_delete=models.CASCADE, verbose_name='новость')
+    comment = models.TextField(blank=True, verbose_name='комментарий')
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

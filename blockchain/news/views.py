@@ -53,7 +53,7 @@ def article(request, news_id):
 def like_news(request, pk):
     news_item = get_object_or_404(News, pk=pk)
     if request.user.is_authenticated:
-        profile = request.user.profile  # Предполагается, что у пользователя есть профиль
+        profile = request.user.profile
         if news_item.likes.filter(id=profile.id).exists():
             news_item.likes.remove(profile)
         else:

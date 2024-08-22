@@ -1,0 +1,16 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="text-center">
+        <img src="{{ person.image.url }}" alt="{{ person.name }}"
+             style="width: 300px; height: 300px; object-fit: cover; border-radius: 50%;">
+        <h1>{{ person.name }}</h1>
+        <h2>{{ person.title }}</h2>
+        <p>{{ person.description|safe }}</p>
+         <div class="mt-4 mb-5">
+            <a class="btn btn-secondary" href="{% url 'home' %}">Назад</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -3,7 +3,7 @@ from decimal import Decimal
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, unique=True)
+    name = models.CharField(max_length=100, unique=True, verbose_name='категория')
 
     def __str__(self):
         return self.name
@@ -14,11 +14,11 @@ class Category(models.Model):
 
 
 class Crypto(models.Model):
-    name = models.CharField(max_length=100)
-    short_name = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='crypto/images/')
+    name = models.CharField(max_length=100, verbose_name='название')
+    short_name = models.CharField(max_length=50, verbose_name='тикер')
+    image = models.ImageField(upload_to='crypto/images/', verbose_name='изображение')
     last_updated = models.DateTimeField(auto_now=True)
-    categories = models.ManyToManyField(Category, related_name='cryptos', blank=True)
+    categories = models.ManyToManyField(Category, related_name='cryptos', blank=True, verbose_name='категория')
 
     def __str__(self):
         return self.name
