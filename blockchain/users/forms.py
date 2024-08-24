@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-# from django import forms
+from captcha.fields import CaptchaField
+
 from .models import Profile, Message
 from django.forms import ModelForm
 
@@ -37,13 +38,17 @@ class ProfileModelForm(ModelForm):
 
 
 class CustomUserCreationForm(UserCreationForm):
+    captcha = CaptchaField(label=None)
     class Meta:
         model = User
         fields = ['first_name', 'email', 'username', 'password1', 'password2']
 
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field in self.fields.values():
+        for field_name, field in self.fields.items():
+            if isinstance(field, CaptchaField):
+                continue
             field.widget.attrs.update({'class': 'form-control'})
             field.widget.attrs.update({'placeholder': field.label})
 

@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'users.apps.UsersConfig',
     'crypto.apps.CryptoConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
