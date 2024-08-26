@@ -64,7 +64,8 @@
             <div class="col-lg-4">
                 <img src="{{ person.image.url }}" alt="{{ person.name }}" style="width: 250px; height: 250px; object-fit: cover; border-radius: 50%;">
                 <h2 class="fw-normal">{{ person.name }}</h2>
-                <p>{{ person.title }}</p>
+                <p>{{ person.title|truncatechars:100}}</p>
+
                 <p><a class="btn btn-secondary" href="{% url 'person_detail' person.id %}">Подробнее &raquo;</a></p>
             </div><!-- /.col-lg-4 -->
             {% endfor %}

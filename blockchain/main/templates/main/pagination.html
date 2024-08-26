@@ -4,23 +4,29 @@
         {% if queryset.has_previous %}
         <li class="page-item {% if not queryset.has_previous %}disabled{% endif %}">
             <a class="page-link" href="?page={{ queryset.previous_page_number }}" tabindex="-1" aria-disabled="true"
-               data-page="{{ queryset.previous_page_number }}">Предыдущая</a>
+               data-page="{{ queryset.previous_page_number }}" style="background-color: #000; color: #fff;">Предыдущая</a>
         </li>
         {% endif %}
         {% for page in custom_range %}
         {% if page == queryset.number %}
-        <li class="page-item active"><a class="page-link" href="?page={{ page }}" data-page="{{ page }}">{{ page }}</a>
+        <li class="page-item active" style="background-color: #000;">
+            <a class="page-link" href="?page={{ page }}" data-page="{{ page }}" style="color: #fff;">{{ page }}</a>
         </li>
         {% else %}
-        <li class="page-item"><a class="page-link" href="?page={{ page }}" data-page="{{ page }}">{{ page }}</a></li>
+        <li class="page-item">
+            <a class="page-link" href="?page={{ page }}" data-page="{{ page }}" style="background-color: #000; color: #fff;">{{ page }}</a>
+        </li>
         {% endif %}
         {% endfor %}
         {% if queryset.has_next %}
         <li class="page-item {% if not queryset.has_next %}disabled{% endif %}">
             <a class="page-link" href="?page={{ queryset.next_page_number }}"
-               data-page="{{ queryset.next_page_number }}">Следующая</a>
+               data-page="{{ queryset.next_page_number }}" style="background-color: #000; color: #fff;">Следующая</a>
         </li>
         {% endif %}
     </ul>
 </nav>
+
+
+
 {% endif %}
