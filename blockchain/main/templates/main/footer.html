@@ -1,18 +1,26 @@
+{% load static %}
 <footer class="footer bg-dark text-light">
     <div class="container py-5">
         <div class="row">
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h5 class="text-uppercase">Социальные сети</h5>
                 <ul class="list-unstyled d-flex mb-0">
-                    <li class="me-3"><a href="#"><img src="" alt="Facebook" class="social-icon"></a></li>
-                    <li class="me-3"><a href="#"><img src="" alt="Twitter" class="social-icon"></a></li>
-                    <li><a href="#"><img src="" alt="Instagram" class="social-icon"></a></li>
+                    <li class="me-3"><a href="https://www.facebook.com" target="_blank"><img
+                            src="{% static 'images/free-icon-facebook-4494475.png' %}" alt="Facebook"
+                            class="social-icon"></a></li>
+                    <li class="me-3"><a href="https://www.twitter.com" target="_blank"><img
+                            src="{% static 'images/free-icon-twitter-4494477.png' %}" alt="Twitter" class="social-icon"></a>
+                    </li>
+                    <li><a href="https://www.instagram.com" target="_blank"><img
+                            src="{% static 'images/free-icon-instagram-2111463 (2).png' %}" alt="Instagram"
+                            class="social-icon"></a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h5 class="text-uppercase">О нас</h5>
-                <p>Краткое описание вашей компании или проекта.</p>
+                <p>Мы создаем инновационные решения в мире криптовалют и блокчейна.</p>
             </div>
+
             <div class="col-md-6 col-lg-3 mb-4 mb-md-0">
                 <h5 class="text-uppercase">Контакты</h5>
                 <ul class="list-unstyled">
@@ -21,15 +29,21 @@
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3">
-                <h5 class="text-uppercase">Подписка на рассылку</h5>
-                <form>
-                    <div class="mb-3">
-                        <label for="emailInput" class="form-label visually-hidden">Email адрес</label>
-                        <input type="email" class="form-control" id="emailInput" placeholder="Введите ваш email">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Подписаться</button>
-                </form>
+                <h5 class="text-uppercase">Партнеры</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="https://metamask.io/" target="_blank" style="color: yellow; text-decoration: none;">MetaMask</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://www.ledger.com/" target="_blank" style="color: yellow; text-decoration: none;">Ledger</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="https://www.trezor.io/" target="_blank" style="color: yellow; text-decoration: none;">Trezor</a>
+                    </li>
+                </ul>
             </div>
+
+
         </div>
     </div>
 </footer>
