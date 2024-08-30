@@ -29,7 +29,6 @@ def prices(cryptos):
     data = get_crypto_prices(crypto_ids)
 
     if not data:
-        print("Не удалось получить данные для криптовалют.")
         return cryptos
     for crypto in cryptos:
         price = data.get(crypto.name.lower(), {}).get('usd', 'Не доступно')
